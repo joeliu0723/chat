@@ -7,6 +7,7 @@ def read_file(filename):
 	return chat
 def convert(lines):
 	convert = []
+	person = None #預設person值為無,避免第一行不是人名造成當機的狀況
 	for line in lines:
 		if line == 'Allen':
 			person = 'Allen'
@@ -14,8 +15,8 @@ def convert(lines):
 		elif line == 'Tom':
 			person = 'Tom'
 			continue
-		convert.append(person + ':' + line+'\n')
-	print(convert)
+		if person:   #檢查person是否有值,有的話才跑加入清單的程式碼,避免當掉
+			convert.append(person + ': ' + line+'\n')
 	return convert
 
 def write_file(filename,ret):
